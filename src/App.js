@@ -27,19 +27,19 @@ function Application() {
   return (
     <div className="App">
       <Router>
-        <Sidebar className="sidebar">
+        
           <Routes>
-            <Route exact path="/" render={() => <Home />}>
+            <Route exact path="/home" element={
               <Home />
-            </Route>
-            <Route exact path="/components" render={() => <Components />}>
+            } />
+            {/* <Route exact path="/components" render={() => <Components />}>
               <Components />
             </Route>
             <Route exact path="/stats" render={() => <Stats />}>
               <Stats />
-            </Route>
+            </Route> */}
           </Routes>
-        </Sidebar>
+        {/* </Sidebar> */}
       </Router>
     </div>
   );
