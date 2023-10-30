@@ -1,41 +1,7 @@
-import React from "react";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-} from "recharts";
-
-const data = [
-  { category: "Category A", count: 10 },
-  { category: "Category B", count: 20 },
-  { category: "Category C", count: 15 },
-  { category: "Category D", count: 25 },
-  { category: "Category E", count: 30 },
-];
-
-const VerticalBarChart = () => {
-  return (
-    <BarChart width={1400} height={600} data={data}>
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis
-        type="number"
-        dataKey="count"
-        label={{ value: "Count", position: "insideBottom" }}
-      />
-      <YAxis
-        dataKey="category"
-        type="category"
-        label={{ value: "Category", angle: -90, position: "insideLeft" }}
-      />
-      <Tooltip />
-      <Legend />
-      <Bar dataKey="count" fill="#8884d8" />
-    </BarChart>
-  );
-};
-
-export default VerticalBarChart;
+Cell: (row) => {
+        return (
+          <div style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}>
+            {row.value}
+          </div>
+        );
+      },
