@@ -1,6 +1,7 @@
 import "./styles.css";
 import React, { useEffect, useState } from "react";
 import { PieChart, Pie, Tooltip } from "recharts";
+import axios from "axios";
 
 // Function to generate a random color
 function getRandomColor() {
@@ -16,20 +17,19 @@ export default function App() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    // Simulate fetching data from an API
-    // Replace this with your actual API call
+    // Make an Axios API call to fetch data
     const fetchData = async () => {
-      const apiData = await fetch("your-api-endpoint-here").then((response) =>
-        response.json()
-      );
-
-      // Assign a random color to each data item
-      const dataWithColors = apiData.map((item) => ({
-        ...item,
-        color: getRandomColor(),
-      });
-
-      setData(dataWithColors);
+      try {
+        const response = await axios.get("your-api-endpoint-here");
+        // Assign a random color to each data item
+        const dataWithColors = response.data.map((item) => ({
+          ...item,
+          color: getRandomColor(),
+        });
+        setData(dataWithColors);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     };
 
     fetchData();
