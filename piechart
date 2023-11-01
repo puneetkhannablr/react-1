@@ -15,6 +15,7 @@ function getRandomColor() {
 
 export default function App() {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Make an Axios API call to fetch data
@@ -27,8 +28,10 @@ export default function App() {
           color: getRandomColor(),
         });
         setData(dataWithColors);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
+        setLoading(false);
       }
     };
 
@@ -36,21 +39,29 @@ export default function App() {
   }, []);
 
   return (
-    <PieChart width={1000} height={400}>
-      {data.map((entry, index) => (
-        <Pie
-          key={`pie-${index}`}
-          dataKey="value"
-          isAnimationActive={false}
-          data={[entry]}
-          cx={(index + 1) * 150}
-          cy={200}
-          outerRadius={80}
-          fill={entry.color}
-          label
-        />
-      ))}
-      <Tooltip />
-    </PieChart>
+    <div>
+      {loading ? (
+        <p>Loading data...</p>
+      ) : data.length > 0 ? (
+        <PieChart width={1000} height={400}>
+          {data.map((entry, index) => (
+            <Pie
+              key={`pie-${index}`}
+              dataKey="value"
+              isAnimationActive={false}
+              data={[entry]}
+              cx={(index + 1) * 150}
+              cy={200}
+              outerRadius={80}
+              fill={entry.color}
+              label
+            />
+          ))}
+          <Tooltip />
+        </PieChart>
+      ) : (
+        <p>No data available.</p>
+      )}
+    </div>
   );
 }
