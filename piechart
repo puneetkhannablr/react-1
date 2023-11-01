@@ -42,7 +42,7 @@ export default function App() {
     <div>
       {loading ? (
         <p>Loading data...</p>
-      ) : data.length > 0 ? (
+      ) : data.length > 0 && !loading ? (
         <PieChart width={1000} height={400}>
           {data.map((entry, index) => (
             <Pie
